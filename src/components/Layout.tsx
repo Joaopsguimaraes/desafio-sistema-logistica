@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils'
 export function Layout({ children }: PropsWithChildren) {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Sidebar Navigation */}
       <div className="bg-primary md:w-64 w-full md:min-h-screen p-4">
         <div className="flex items-center gap-2 mb-8">
           <TruckIcon className="size-8 text-white" />
