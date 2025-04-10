@@ -1,22 +1,21 @@
+/* eslint-disable react-refresh/only-export-components */
+import { useLogistics } from '@/hooks/useLogistics'
 import { Product } from '@/schemas/productSchema'
+import { Purchase } from '@/schemas/purchaseSchema'
 import {
   createContext,
   PropsWithChildren,
-  useContext,
   useEffect,
   useMemo,
   useState,
 } from 'react'
 import { toast } from 'sonner'
-import { useLogistics } from './LogisticsContext'
-import { Purchase } from '@/schemas/purchaseSchema'
 
 interface ProductsContextType {
   products: Product[]
   searchProductsTerms: string
   filteredProducts: Product[]
   addProduct: (product: Omit<Product, 'id'>) => void
-  updateProduct: (id: string, product: Partial<Product>) => void
   deleteProduct: (id: string) => void
   searchProducts: (value: string) => void
   getProductById: (id: string) => Product | undefined
@@ -24,7 +23,7 @@ interface ProductsContextType {
   getProductTotalAvailableQuantity: (productId: string) => number
 }
 
-const ProductsContext = createContext<ProductsContextType | undefined>(
+export const ProductsContext = createContext<ProductsContextType | undefined>(
   undefined,
 )
 
@@ -38,12 +37,8 @@ export function ProductsProvider({ children }: PropsWithChildren) {
   const [searchProductsTerms, setSearchProductsTerms] = useState<string>('')
 
   const filteredProducts = useMemo(() => {
-    return products.filter(
-      (product) =>
-        product.name
-          .toLowerCase()
-          .includes(searchProductsTerms.toLowerCase()) ||
-        product.code.toLowerCase().includes(searchProductsTerms.toLowerCase()),
+    return products.filter((product) =>
+      product.name.toLowerCase().includes(searchProductsTerms.toLowerCase()),
     )
   }, [products, searchProductsTerms])
 
@@ -54,13 +49,6 @@ export function ProductsProvider({ children }: PropsWithChildren) {
     }
     setProducts((prev) => [...prev, newProduct])
     toast.success('Produto adicionado')
-  }
-
-  const updateProduct = (id: string, product: Partial<Product>) => {
-    setProducts((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, ...product } : p)),
-    )
-    toast.success('Product atualizado com sucesso')
   }
 
   const deleteProduct = (id: string) => {
@@ -104,7 +92,6 @@ export function ProductsProvider({ children }: PropsWithChildren) {
     searchProductsTerms,
     filteredProducts,
     addProduct,
-    updateProduct,
     deleteProduct,
     searchProducts,
     getProductById,
@@ -117,14 +104,4 @@ export function ProductsProvider({ children }: PropsWithChildren) {
       {children}
     </ProductsContext.Provider>
   )
-}
-
-export const useProducts = () => {
-  const context = useContext(ProductsContext)
-
-  if (context === undefined) {
-    throw new Error('useProducts must be used within a ProductsProvider')
-  }
-
-  return context
 }

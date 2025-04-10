@@ -1,14 +1,14 @@
 import { useLoadingAnimation } from '@/hooks/useLoadingAnimation'
+import { cn } from '@/lib/utils'
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ProductDialogForm } from './ProductDialogForm'
-import { cn } from '@/lib/utils'
+import { NewSalesDialog } from './NewSalesDialog'
 
-export function ProductHeader() {
+export function SalesHeader() {
   const { isLoading } = useLoadingAnimation()
 
   return (
@@ -20,10 +20,10 @@ export function ProductHeader() {
     >
       <CardHeader className="flex flex-row">
         <div className="flex flex-col justify-center gap-1 w-full">
-          <CardTitle className="text-xl">Produtos</CardTitle>
-          <CardDescription>Gerencie o inventário de produtos</CardDescription>
+          <CardTitle className="text-xl">Vendas</CardTitle>
+          <CardDescription>Gerencie suas vendas</CardDescription>
         </div>
-        <ProductDialogForm />
+        <NewSalesDialog />
       </CardHeader>
     </Card>
   )

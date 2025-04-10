@@ -7,12 +7,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { useProducts } from '@/context/ProductsContext'
 import { useLoadingAnimation } from '@/hooks/useLoadingAnimation'
 import { cn } from '@/lib/utils'
-import { Edit2Icon, Package2Icon, Trash2Icon } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
-import { SearchProducts } from './SearchProducts'
+import { Package2Icon, Trash2Icon } from 'lucide-react'
+import { Card, CardContent, CardHeader } from '../ui/card'
+import { useProducts } from '@/hooks/useProducts'
 
 export function ListProducts() {
   const { isLoading } = useLoadingAnimation()
@@ -25,17 +24,14 @@ export function ListProducts() {
         isLoading ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100',
       )}
     >
-      <CardHeader>
-        <CardTitle>Pesquisar</CardTitle>
-        <SearchProducts />
-      </CardHeader>
+      <CardHeader></CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead className="text-center">Nome</TableHead>
-              <TableHead className="text-center">Código</TableHead>
-              <TableHead className="text-right pr-8">Ações</TableHead>
+              <TableHead className="text-center">Unidade</TableHead>
+              <TableHead className="text-center">Deletar</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -61,25 +57,16 @@ export function ListProducts() {
                   <TableCell className="font-medium text-center">
                     {product.name}
                   </TableCell>
-                  <TableCell className="text-center">{product.code}</TableCell>
-                  <TableCell>
-                    <div className="flex justify-end gap-2">
-                      <Button
-                        variant="outline"
-                        size="icon"
-                      >
-                        <Edit2Icon className="h-4 w-4" />
-                        <span className="sr-only">Editar</span>
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => deleteProduct(product.id)}
-                      >
-                        <Trash2Icon className="h-4 w-4 text-destructive" />
-                        <span className="sr-only">Deletar</span>
-                      </Button>
-                    </div>
+                  <TableCell className="text-center">{product.unit}</TableCell>
+                  <TableCell className="text-center">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => deleteProduct(product.id!)}
+                    >
+                      <Trash2Icon className="h-4 w-4 text-destructive" />
+                      <span className="sr-only">Deletar</span>
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))

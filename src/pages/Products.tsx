@@ -3,7 +3,7 @@ import { ProductHeader } from '@/components/products/ProductHeader'
 
 export default function Products() {
   return (
-    <main className="w-full flex flex-col gap-5">
+    <main className="space-y-4">
       <ProductHeader />
       <ListProducts />
     </main>

@@ -13,34 +13,26 @@ import { Input } from '@/components/ui/input'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
-import { useProducts } from '@/context/ProductsContext'
+import { Product, productSchema } from '@/schemas/productSchema'
+import { useProducts } from '@/hooks/useProducts'
 
-const newProductSchema = z.object({
-  name: z.string({
-    required_error: 'Nome do produto é obrigatório',
-  }),
-  code: z.string(),
-})
-
-export type NewProduct = z.infer<typeof newProductSchema>
-
-export function NewProductDialog() {
+export function ProductDialogForm() {
   const [open, setOpen] = useState(false)
-  const form = useForm<NewProduct>({
-    resolver: zodResolver(newProductSchema),
+  const form = useForm<Product>({
+    resolver: zodResolver(productSchema),
   })
   const { addProduct } = useProducts()
 
-  const onSubmit = (data: NewProduct) => {
+  const onSubmit = (data: Product) => {
     addProduct(data)
     form.reset()
     setOpen(false)
@@ -88,23 +80,26 @@ export function NewProductDialog() {
 
             <FormField
               control={form.control}
-              name="code"
+              name="unit"
               render={({ field }) => (
                 <FormItem className="space-y-2">
-                  <FormLabel>Código do produto:</FormLabel>
+                  <FormLabel>Unidade de medida:</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Digite o código do produto"
+                      placeholder="Digite uma unidade de medida"
                       {...field}
                     />
                   </FormControl>
+                  <FormDescription>
+                    Informe unidades de medida como: UN, TN, MT, KG, LT
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
             <DialogFooter>
-              <Button type="submit">Adicionar Produto</Button>
+              <Button type="submit">Cadastrar</Button>
             </DialogFooter>
           </form>
         </Form>

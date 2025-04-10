@@ -1,12 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
 import { Purchase } from '@/schemas/purchaseSchema'
 import { LinkedPurchases, Sales } from '@/schemas/salesSchema'
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 interface LogisticsContextType {
@@ -24,7 +19,7 @@ interface LogisticsContextType {
   ) => void
 }
 
-const LogisticsContext = createContext<LogisticsContextType | undefined>(
+export const LogisticsContext = createContext<LogisticsContextType | undefined>(
   undefined,
 )
 
@@ -33,7 +28,6 @@ export function LogisticsProvider({ children }: PropsWithChildren) {
     const savedPurchases = localStorage.getItem('purchases')
     return savedPurchases ? JSON.parse(savedPurchases) : []
   })
-
   const [sales, setSales] = useState<Sales[]>(() => {
     const savedSales = localStorage.getItem('sales')
     return savedSales ? JSON.parse(savedSales) : []
@@ -249,12 +243,4 @@ export function LogisticsProvider({ children }: PropsWithChildren) {
       {children}
     </LogisticsContext.Provider>
   )
-}
-
-export const useLogistics = () => {
-  const context = useContext(LogisticsContext)
-  if (context === undefined) {
-    throw new Error('useLogistics must be used within a LogisticsProvider')
-  }
-  return context
 }
