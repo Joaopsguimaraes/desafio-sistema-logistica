@@ -24,7 +24,7 @@ export function ListProducts() {
         isLoading ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100',
       )}
     >
-      <CardHeader></CardHeader>
+      <CardHeader className="bg-primary/5" />
       <CardContent>
         <Table>
           <TableHeader>

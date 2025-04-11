@@ -1,5 +1,6 @@
 import {
   BarChart3Icon,
+  LinkIcon,
   Package2Icon,
   ShoppingCartIcon,
   TruckIcon,
@@ -13,7 +14,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from './ui/sidebar'
-import { NavLink } from 'react-router'
+import { NavLink, useLocation } from 'react-router'
 import { cn } from '@/lib/utils'
 import { Logo } from './Logo'
 
@@ -22,7 +23,6 @@ const menuItems = [
     title: 'Dashboard',
     icon: BarChart3Icon,
     href: '/',
-    isActive: true,
   },
   {
     title: 'Produtos',
@@ -39,9 +39,16 @@ const menuItems = [
     icon: TruckIcon,
     href: '/sales',
   },
+  {
+    title: 'Vínculos',
+    icon: LinkIcon,
+    href: '/links',
+  },
 ]
 
 export function MainSidebar() {
+  const location = useLocation()
+
   return (
     <Sidebar className="border-r border-border">
       <SidebarHeader className="border-b border-border">
@@ -70,7 +77,7 @@ export function MainSidebar() {
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton
                 asChild
-                isActive={item.isActive}
+                isActive={item.href === location.pathname}
                 className={cn(
                   'group transition-all duration-300 ease-in-out',
                   'hover:-translate-y-1 hover:bg-green-100 dark:hover:bg-green-900/30',

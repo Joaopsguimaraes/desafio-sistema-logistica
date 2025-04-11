@@ -13,6 +13,8 @@ import { cn } from '@/lib/utils'
 import { useLogistics } from '@/hooks/useLogistics'
 import { useProducts } from '@/hooks/useProducts'
 import { Button } from '../ui/button'
+import { Badge } from '../ui/badge'
+import { formatCurrency } from '@/utils/formatCurrency'
 
 export function ListPurchase() {
   const { isLoading } = useLoadingAnimation()
@@ -26,17 +28,17 @@ export function ListPurchase() {
         isLoading ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100',
       )}
     >
-      <CardHeader></CardHeader>
+      <CardHeader className="bg-primary/5" />
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Produto</TableHead>
-              <TableHead>Quantidade</TableHead>
-              <TableHead>Preço</TableHead>
-              <TableHead>Total</TableHead>
-              <TableHead>Disponível</TableHead>
-              <TableHead>Remover</TableHead>
+              <TableHead className="text-center">Quantidade</TableHead>
+              <TableHead className="text-center">Preço</TableHead>
+              <TableHead className="text-center">Total</TableHead>
+              <TableHead className="text-center">Disponível</TableHead>
+              <TableHead className="text-center">Remover</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -49,21 +51,27 @@ export function ListPurchase() {
                     <TableCell className="font-medium">
                       {product?.name || 'Unknown'}
                     </TableCell>
-                    <TableCell>{purchase.quantity}</TableCell>
-                    <TableCell>{purchase.unitPrice.toFixed(2)}</TableCell>
-                    <TableCell>{purchase.totalPrice.toFixed(2)}</TableCell>
-                    <TableCell>
-                      <span
-                        className={
+                    <TableCell className="text-center">
+                      <Badge variant={'secondary'}>{purchase.quantity}</Badge>
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {formatCurrency(purchase.unitPrice)}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {formatCurrency(purchase.totalPrice)}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Badge
+                        variant={
                           purchase.availableQuantity > 0
-                            ? 'text-success'
-                            : 'text-muted-foreground'
+                            ? 'default'
+                            : 'destructive'
                         }
                       >
                         {purchase.availableQuantity}
-                      </span>
+                      </Badge>
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="text-center">
                       <Button
                         variant="outline"
                         size="icon"

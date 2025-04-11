@@ -11,6 +11,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 const Products = lazy(() => import('./pages/Products'))
 const Sales = lazy(() => import('./pages/Sales'))
 const Purchases = lazy(() => import('./pages/Purchase'))
+const Links = lazy(() => import('./pages/Links'))
 
 function App() {
   return (
@@ -49,6 +50,14 @@ function App() {
                   element={
                     <Layout>
                       <Purchases />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/links"
+                  element={
+                    <Layout>
+                      <Links />
                     </Layout>
                   }
                 />

@@ -15,6 +15,8 @@ import { LinkSaleDialog } from './LinkSaleDialog'
 import { useLogistics } from '@/hooks/useLogistics'
 import { useProducts } from '@/hooks/useProducts'
 import { useLinked } from '@/hooks/useLinked'
+import { Badge } from '../ui/badge'
+import { formatCurrency } from '@/utils/formatCurrency'
 
 export function ListSales() {
   const { isLoading } = useLoadingAnimation()
@@ -30,17 +32,17 @@ export function ListSales() {
           isLoading ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100',
         )}
       >
-        <CardHeader></CardHeader>
+        <CardHeader className="bg-primary/5" />
         <CardContent>
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Produto</TableHead>
-                <TableHead>Quantidade</TableHead>
-                <TableHead>Preço</TableHead>
-                <TableHead>Total</TableHead>
-                <TableHead>Vinculado</TableHead>
-                <TableHead>Vincular</TableHead>
+                <TableHead className="text-center">Quantidade</TableHead>
+                <TableHead className="text-center">Preço</TableHead>
+                <TableHead className="text-center">Total</TableHead>
+                <TableHead className="text-center">Vinculado</TableHead>
+                <TableHead className="text-center">Vincular</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -69,23 +71,25 @@ export function ListSales() {
                       <TableCell className="font-medium">
                         {product?.name || 'Unknown'}
                       </TableCell>
-                      <TableCell>{sale.quantity}</TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant={'secondary'}>{sale.quantity}</Badge>
+                      </TableCell>
+                      <TableCell className="text-center">
                         {typeof sale.unitPrice === 'number'
-                          ? sale.unitPrice.toFixed(2)
-                          : '0.00'}
+                          ? formatCurrency(sale.unitPrice)
+                          : formatCurrency(0)}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">
                         {typeof sale.totalPrice === 'number'
-                          ? sale.totalPrice.toFixed(2)
-                          : '0.00'}
+                          ? formatCurrency(sale.totalPrice)
+                          : formatCurrency(0)}
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">
                         <span className={linkStatusClass}>
                           {linkStatus} ({linkedQuantity}/{sale.quantity})
                         </span>
                       </TableCell>
-                      <TableCell>
+                      <TableCell className="text-center">
                         <Button
                           variant="outline"
                           size="icon"
