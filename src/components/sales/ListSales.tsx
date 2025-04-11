@@ -38,7 +38,10 @@ export function ListSales() {
             <TableHeader>
               <TableRow>
                 <TableHead>Produto</TableHead>
-                <TableHead className="text-center">Quantidade</TableHead>
+                <TableHead className="text-center">
+                  Quantidade vendida
+                </TableHead>
+                <TableHead className="text-center">Disponível</TableHead>
                 <TableHead className="text-center">Preço</TableHead>
                 <TableHead className="text-center">Total</TableHead>
                 <TableHead className="text-center">Vinculado</TableHead>
@@ -59,12 +62,13 @@ export function ListSales() {
                       : linkedQuantity < sale.quantity
                       ? 'Vinculada parcialmente'
                       : 'Vinculada'
+
                   const linkStatusClass =
                     linkedQuantity === 0
-                      ? 'text-muted-foreground'
+                      ? 'text-destructive'
                       : linkedQuantity < sale.quantity
-                      ? 'text-warning'
-                      : 'text-success'
+                      ? 'text-yellow-500'
+                      : 'text-primary'
 
                   return (
                     <TableRow key={sale.id}>
@@ -73,6 +77,9 @@ export function ListSales() {
                       </TableCell>
                       <TableCell className="text-center">
                         <Badge variant={'secondary'}>{sale.quantity}</Badge>
+                      </TableCell>
+                      <TableCell className="text-center">
+                        <Badge variant={'secondary'}>{linkedQuantity}</Badge>
                       </TableCell>
                       <TableCell className="text-center">
                         {typeof sale.unitPrice === 'number'

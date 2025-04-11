@@ -68,9 +68,7 @@ interface CustomCardProps {
 function CustomCard({ title, value, icon, to, description }: CustomCardProps) {
   return (
     <Link to={to}>
-      <Card
-        className={`bg-primary/5 border-primary hover:shadow-md transition-shadow`}
-      >
+      <Card className={`bg-primary/5 hover:shadow-md transition-shadow`}>
         <CardContent className="pt-6">
           <div className="flex justify-between items-start">
             <div>
