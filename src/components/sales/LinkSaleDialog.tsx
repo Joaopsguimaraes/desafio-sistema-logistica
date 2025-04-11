@@ -163,8 +163,7 @@ export function LinkSaleDialog() {
                                   key={p.id}
                                   value={p.id}
                                 >
-                                  {new Date(p.date).toLocaleDateString()} -{' '}
-                                  {p.availableQuantity} avail.
+                                  {p.availableQuantity} Quantidade(s)
                                 </SelectItem>
                               ))}
                             </SelectContent>

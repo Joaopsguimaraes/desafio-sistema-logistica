@@ -44,9 +44,7 @@ export function ListProducts() {
                       Não foram encontrados produtos
                     </h3>
                     <p className="text-muted-foreground mb-4">
-                      {searchProductsTerms
-                        ? 'Não foram encontrados produtos com esses critérios'
-                        : 'Cadastre seu primeiro produto'}
+                      Realize o primeiro cadastro
                     </p>
                   </div>
                 </TableCell>

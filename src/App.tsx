@@ -10,6 +10,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const Products = lazy(() => import('./pages/Products'))
 const Sales = lazy(() => import('./pages/Sales'))
+const Purchases = lazy(() => import('./pages/Purchase'))
 
 function App() {
   return (
@@ -40,6 +41,14 @@ function App() {
                   element={
                     <Layout>
                       <Sales />
+                    </Layout>
+                  }
+                />
+                <Route
+                  path="/purchase"
+                  element={
+                    <Layout>
+                      <Purchases />
                     </Layout>
                   }
                 />
