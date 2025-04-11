@@ -1,5 +1,8 @@
 # Sistema de Logística
 
+![image](https://github.com/user-attachments/assets/b084b41b-9b6f-4441-b5b4-2aeca87d6e23)
+
+
 ## 📋 Sobre o Projeto
 
 Uma aplicação web voltada para a área de logística, onde o cliente pode cadastrar compras e vendas. A aplicação deve permitir vincular vendas a compras existentes, respeitando os saldos disponíveis.
