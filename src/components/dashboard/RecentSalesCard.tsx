@@ -72,7 +72,7 @@ export function RecentSalesCard() {
             </div>
           </div>
         ) : (
-          <div className="text-center py-8 text-muted-foreground">
+          <div className="text-center flex flex-col gap-2 justify-center items-center py-8 text-muted-foreground">
             <p>Não há vendas realizadas ainda, adicione uma nova venda</p>
             <NewSalesDialogForm />
           </div>
