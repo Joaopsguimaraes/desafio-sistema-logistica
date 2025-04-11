@@ -35,12 +35,15 @@ import { Textarea } from '@/components/ui/textarea'
 import { useLogistics } from '@/hooks/useLogistics'
 import { useProducts } from '@/hooks/useProducts'
 
-export function NewSalesDialog() {
+export function NewSalesDialogForm() {
   const { addSale } = useLogistics()
   const { products } = useProducts()
   const [isOpenDialog, setIsOpenDialog] = useState(false)
   const form = useForm<Sales>({
     resolver: zodResolver(salesSchema),
+    defaultValues: {
+      createdAt: new Date(),
+    },
   })
 
   const onSubmit = (data: Sales) => {

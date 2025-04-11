@@ -71,13 +71,11 @@ export function ListSales() {
                       </TableCell>
                       <TableCell>{sale.quantity}</TableCell>
                       <TableCell>
-                        R$
                         {typeof sale.unitPrice === 'number'
                           ? sale.unitPrice.toFixed(2)
                           : '0.00'}
                       </TableCell>
                       <TableCell>
-                        R$
                         {typeof sale.totalPrice === 'number'
                           ? sale.totalPrice.toFixed(2)
                           : '0.00'}

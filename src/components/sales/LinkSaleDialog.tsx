@@ -161,7 +161,7 @@ export function LinkSaleDialog() {
                               {availablePurchases.map((p) => (
                                 <SelectItem
                                   key={p.id}
-                                  value={p.id}
+                                  value={String(p.id)}
                                 >
                                   {p.availableQuantity} Quantidade(s)
                                 </SelectItem>

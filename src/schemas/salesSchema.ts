@@ -21,6 +21,7 @@ export const salesSchema = z.object({
   totalPrice: z.number({}),
   notes: z.string().optional(),
   linkedPurchases: z.array(likedPurchasesSchema),
+  createdAt: z.date(),
 })
 
 export type Sales = z.infer<typeof salesSchema>

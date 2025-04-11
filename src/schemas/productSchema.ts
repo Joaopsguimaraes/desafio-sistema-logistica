@@ -12,6 +12,7 @@ export const productSchema = z.object({
       required_error: 'Unidade é obrigatório',
     })
     .min(1, { message: 'Unidade é obrigatório' }),
+  createdAt: z.date(),
 })
 
 export type Product = z.infer<typeof productSchema>

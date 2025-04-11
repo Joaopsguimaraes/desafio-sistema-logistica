@@ -2,20 +2,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useLogistics } from '@/hooks/useLogistics'
 import { useProducts } from '@/hooks/useProducts'
-import { Sales } from '@/schemas/salesSchema'
+import { LinkedPurchases, Sales } from '@/schemas/salesSchema'
 import { createContext, PropsWithChildren, useState } from 'react'
 import { toast } from 'sonner'
-
-type LinkedPurchase = {
-  purchaseId: string
-  quantity: number
-  unitPrice: number
-}
 
 type LinkedFieldsType = 'purchaseId' | 'unitPrice' | 'quantity'
 
 interface LinkedContextProps {
-  linkedPurchases: LinkedPurchase[]
+  linkedPurchases: LinkedPurchases[]
   isOpenLinkDialog: boolean
   setIsOpenLinkDialog: (value: boolean) => void
   openLinkDialogWithId: (saleId: string) => void
@@ -37,7 +31,7 @@ export const LinkedContext = createContext<LinkedContextProps | undefined>(
 export function LinkedProvider({ children }: PropsWithChildren) {
   const { sales, linkSaleToPurchases } = useLogistics()
   const { getAvailablePurchasesForProduct } = useProducts()
-  const [linkedPurchases, setLinkedPurchases] = useState<LinkedPurchase[]>([])
+  const [linkedPurchases, setLinkedPurchases] = useState<LinkedPurchases[]>([])
   const [isOpenLinkDialog, setIsOpenLinkDialog] = useState(false)
   const [currentSale, setCurrentSale] = useState<Sales | null>(null)
 
@@ -55,6 +49,7 @@ export function LinkedProvider({ children }: PropsWithChildren) {
           typeof lp.unitPrice === 'number'
             ? lp.unitPrice
             : parseFloat(lp.unitPrice as unknown as string),
+        totalPrice: lp.quantity * lp.unitPrice,
       })),
     )
 
@@ -79,7 +74,7 @@ export function LinkedProvider({ children }: PropsWithChildren) {
       setCurrentSale(null)
       setLinkedPurchases([])
     } catch (error) {
-      toast.error(`Error: ${(error as Error).message}`)
+      toast.error(`Erro: ${(error as Error).message}`)
     }
   }
 
@@ -101,29 +96,28 @@ export function LinkedProvider({ children }: PropsWithChildren) {
 
     const availablePurchases = getAvailablePurchasesForProduct(sale.productId)
     if (availablePurchases.length === 0) {
-      toast.error('No available purchases to link')
+      toast.error('Não há quantidade disponível de compra para vincular')
       return
     }
 
-    // Calculate currently linked quantity
     const currentlyLinkedQuantity = linkedPurchases.reduce(
       (acc, lp) => acc + lp.quantity,
       0,
     )
 
-    // Check if sale is fully linked
     if (currentlyLinkedQuantity >= sale.quantity) {
-      toast.error('Sale is already fully linked to purchases')
+      toast.error('Venda já esta completamente vinculada a compra')
       return
     }
 
-    // Add a new empty link with unitPrice as a number
-    setLinkedPurchases([
-      ...linkedPurchases,
+    // Adicionar um novo link vazio com unitPrice como um número
+    setLinkedPurchases((prevState) => [
+      ...prevState,
       {
-        purchaseId: availablePurchases[0].id,
+        purchaseId: availablePurchases[0].id!,
         quantity: 0,
         unitPrice: availablePurchases[0].unitPrice,
+        totalPrice: 0,
       },
     ])
   }

@@ -15,7 +15,7 @@ import { useProducts } from '@/hooks/useProducts'
 
 export function ListProducts() {
   const { isLoading } = useLoadingAnimation()
-  const { filteredProducts, searchProductsTerms, deleteProduct } = useProducts()
+  const { products, deleteProduct } = useProducts()
 
   return (
     <Card
@@ -35,7 +35,7 @@ export function ListProducts() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {filteredProducts.length === 0 ? (
+            {products.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={3}>
                   <div className="border rounded-lg p-8 text-center">
@@ -50,7 +50,7 @@ export function ListProducts() {
                 </TableCell>
               </TableRow>
             ) : (
-              filteredProducts.map((product) => (
+              products.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell className="font-medium text-center">
                     {product.name}

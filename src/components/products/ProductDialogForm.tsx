@@ -29,6 +29,9 @@ export function ProductDialogForm() {
   const [open, setOpen] = useState(false)
   const form = useForm<Product>({
     resolver: zodResolver(productSchema),
+    defaultValues: {
+      createdAt: new Date(),
+    },
   })
   const { addProduct } = useProducts()
 

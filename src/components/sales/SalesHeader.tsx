@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { NewSalesDialog } from './NewSalesDialog'
+import { NewSalesDialogForm } from './NewSalesDialog'
 
 export function SalesHeader() {
   const { isLoading } = useLoadingAnimation()
@@ -23,7 +23,7 @@ export function SalesHeader() {
           <CardTitle className="text-xl">Vendas</CardTitle>
           <CardDescription>Gerencie suas vendas</CardDescription>
         </div>
-        <NewSalesDialog />
+        <NewSalesDialogForm />
       </CardHeader>
     </Card>
   )

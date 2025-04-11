@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import {
   Dialog,
@@ -37,6 +38,9 @@ import { Textarea } from '@/components/ui/textarea'
 export function NewPurchaseDialogForm() {
   const form = useForm<Purchase>({
     resolver: zodResolver(purchaseSchema),
+    defaultValues: {
+      createdAt: new Date(),
+    },
   })
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const { addPurchase } = useLogistics()
@@ -54,6 +58,7 @@ export function NewPurchaseDialogForm() {
 
     if (quantity && unitPrice) {
       form.setValue('totalPrice', quantity * unitPrice)
+      form.setValue('availableQuantity', quantity)
     }
   }, [form.watch('quantity'), form.watch('unitPrice')])
 

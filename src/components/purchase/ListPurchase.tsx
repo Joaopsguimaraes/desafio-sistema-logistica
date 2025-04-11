@@ -1,5 +1,5 @@
 import { useLoadingAnimation } from '@/hooks/useLoadingAnimation'
-import { Card, CardContent } from '../ui/card'
+import { Card, CardContent, CardHeader } from '../ui/card'
 import {
   Table,
   TableBody,
@@ -26,6 +26,7 @@ export function ListPurchase() {
         isLoading ? 'translate-y-4 opacity-0' : 'translate-y-0 opacity-100',
       )}
     >
+      <CardHeader></CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
@@ -49,8 +50,8 @@ export function ListPurchase() {
                       {product?.name || 'Unknown'}
                     </TableCell>
                     <TableCell>{purchase.quantity}</TableCell>
-                    <TableCell>${purchase.unitPrice.toFixed(2)}</TableCell>
-                    <TableCell>${purchase.totalPrice.toFixed(2)}</TableCell>
+                    <TableCell>{purchase.unitPrice.toFixed(2)}</TableCell>
+                    <TableCell>{purchase.totalPrice.toFixed(2)}</TableCell>
                     <TableCell>
                       <span
                         className={
