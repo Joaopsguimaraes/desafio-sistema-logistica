@@ -51,12 +51,6 @@ export function ListProductsLinked({ productData }: Props) {
                   {purchase.availableQuantity}
                 </span>
               </div>
-              <div className="text-sm">
-                <span className="text-muted-foreground">Preço unitário: </span>
-                <span className="font-medium">
-                  {formatCurrency(purchase.unitPrice)}
-                </span>
-              </div>
             </div>
           </div>
 

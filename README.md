@@ -1,54 +1,149 @@
-# React + TypeScript + Vite
+# Sistema de Logística
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📋 Sobre o Projeto
 
-Currently, two official plugins are available:
+Uma aplicação web voltada para a área de logística, onde o cliente pode cadastrar compras e vendas. A aplicação deve permitir vincular vendas a compras existentes, respeitando os saldos disponíveis.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+### Principais Tecnologias
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React Js
+- TypeScript
+- Vite
+- React router
+- Context API
+- Hooks
+- Tailwind CSS
+- Shadcn UI
+- Vercel
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Bibliotecas de Validação e Formulários
+
+- React hook form
+- Zod (Validação de Esquemas)
+
+### Bibliotecas Adicionais
+
+- Sonner
+- Framer motion
+- Lucide react (Ícones)
+- Class Variance Authority (Variantes para os componentes)
+
+## 🏗️ Arquitetura do Projeto
+
+### Estrutura de Diretórios
+
+```
+src/
+│
+├── assets/             # Recursos estáticos
+├── components/         # Componentes reutilizáveis
+│   ├── dashboard
+│   ├── links
+│   ├── products
+│   └── ...
+│
+├── context/            # Contextos da aplicação
+│   ├── LogisticsContext.tsx
+│   ├── ProductsContext.tsx
+│   └── ...
+│
+├── hooks/              # Hooks da aplicação
+│   ├── useLogistics.ts
+│   ├── useProducts.ts
+│   └── ...
+│
+├── lib/                # Serviços e utilitários terceiros
+│   └── utils.ts
+│
+├── pages/              # Paginas da aplicação
+│   ├── Dashboard.tsx
+│   ├── Purchase.tsx
+│   └── Products.tsx
+│
+├── schemas/            # Schemas da aplicação
+│   ├── productsSchema.tsx
+│   ├── salesSchema.tsx
+│   └── ...
+│
+├── styles/             # Estilos para a aplicação
+│   └── index.css
+│
+├── utils/              # funções utilitárias para a aplicação
+│   ├── formatCurrency.ts
+│   └── formatDate.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Funcionalidades
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Gerenciamento
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- Criação das vendas
+- Listagem das vendas
+- Vinculação das vendas
+- Criação das compras
+- Listagem das compras
+- Dashboard de cadastro gerais
+- Listagem de vínculos realizados
+
+## 🔧 Configuração do Projeto
+
+### Pré-requisitos
+
+- Node.js (versão 20 ou superior)
+- npm
+
+### Instalação
+
+1. Clone o repositório
+
+```bash
+git clone https://github.com/Joaopsguimaraes/desafio-sistema-logistica.git
 ```
+
+2. Instale as dependências
+
+```bash
+cd desafio-sistema-logistica
+npm install
+```
+
+3. Inicie o ambiente de desenvolvimento
+
+```bash
+npm run dev
+```
+
+## 📦 Scripts Disponíveis
+
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Compila o projeto para produção
+- `npm run preview`: Visualiza a build de produção localmente
+- `npm run lint`: Executa o linter
+
+## 📝 Padrões de Desenvolvimento
+
+### Context
+
+- Utilização da Context API
+- Separação de responsabilidades e logica
+- Persistência em local storage
+
+### Componentes
+
+- Componentes pequenos e focados nas responsabilidades
+- Utilização de hooks, como useState, useMemo, useEffect e entre outros
+- Componentização de elementos comuns
+
+### Hooks
+
+- Utilização do hooks para separação das responsabilidades
+- Utilizando hooks para maior clareza na logica do componente
+- Abstração da logica
+
+## ✍️ Autor
+
+João Guimarães - joaovpsguimaraes@gmail.com
+
+Link do Projeto: [https://github.com/Joaopsguimaraes/desafio-sistema-logistica](https://github.com/Joaopsguimaraes/desafio-sistema-logistica)
