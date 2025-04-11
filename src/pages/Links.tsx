@@ -18,7 +18,7 @@ export default function Links() {
   const { linksData } = useLinksList()
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <LinksHeader />
 
       {linksData.length > 0 ? (

@@ -26,7 +26,7 @@ export function ListProductsLinked({ productData }: Props) {
           <div className="bg-muted/30 px-4 py-3 flex flex-wrap justify-between items-center gap-2">
             <div>
               <h3 className="font-medium">
-                Compra: {formatDate(purchase.purchaseDate)}
+                Compra: {formatDate(new Date(purchase.purchaseDate))}
               </h3>
               <p className="text-sm text-muted-foreground">
                 ID: {purchase.purchaseId.substring(0, 8)}...
@@ -75,7 +75,7 @@ export function ListProductsLinked({ productData }: Props) {
                 {purchase.linkedSales.map((sale, i) => (
                   <TableRow key={`${purchase.purchaseId}-${sale.saleId}-${i}`}>
                     <TableCell className="text-center">
-                      {formatDate(sale.saleDate)}
+                      {formatDate(new Date(sale.saleDate))}
                     </TableCell>
                     <TableCell className="font-mono text-center text-xs">
                       {sale.saleId.substring(0, 8)}...

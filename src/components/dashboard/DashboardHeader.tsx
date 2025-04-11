@@ -1,15 +1,9 @@
 import { useLoadingAnimation } from '@/hooks/useLoadingAnimation'
 import { cn } from '@/lib/utils'
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { NewSalesDialogForm } from './NewSalesDialog'
-import { TruckIcon } from 'lucide-react'
+import { BarChart3Icon } from 'lucide-react'
+import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card'
 
-export function SalesHeader() {
+export function DashboardHeader() {
   const { isLoading } = useLoadingAnimation()
 
   return (
@@ -22,12 +16,13 @@ export function SalesHeader() {
       <CardHeader className="flex flex-row">
         <div className="flex flex-col justify-center gap-1 w-full">
           <CardTitle className="text-xl inline-flex gap-2 text-primary">
-            <TruckIcon />
-            Vendas
+            <BarChart3Icon />
+            Dashboard
           </CardTitle>
-          <CardDescription>Gerencie suas vendas</CardDescription>
+          <CardDescription>
+            Visualize suas atividades e performances
+          </CardDescription>
         </div>
-        <NewSalesDialogForm />
       </CardHeader>
     </Card>
   )

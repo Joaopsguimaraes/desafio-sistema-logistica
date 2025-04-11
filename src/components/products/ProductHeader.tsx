@@ -7,6 +7,7 @@ import {
 } from '@/components/ui/card'
 import { ProductDialogForm } from './ProductDialogForm'
 import { cn } from '@/lib/utils'
+import { Package2Icon } from 'lucide-react'
 
 export function ProductHeader() {
   const { isLoading } = useLoadingAnimation()
@@ -20,7 +21,10 @@ export function ProductHeader() {
     >
       <CardHeader className="flex flex-row">
         <div className="flex flex-col justify-center gap-1 w-full">
-          <CardTitle className="text-xl">Produtos</CardTitle>
+          <CardTitle className="text-xl inline-flex gap-2 text-primary">
+            <Package2Icon />
+            Produtos
+          </CardTitle>
           <CardDescription>Gerencie o inventário de produtos</CardDescription>
         </div>
         <ProductDialogForm />

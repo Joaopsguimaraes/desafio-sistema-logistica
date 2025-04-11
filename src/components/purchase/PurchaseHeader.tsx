@@ -7,6 +7,7 @@ import {
 import { useLoadingAnimation } from '@/hooks/useLoadingAnimation'
 import { cn } from '@/lib/utils'
 import { NewPurchaseDialogForm } from './NewPurchaseDialogForm'
+import { ShoppingCartIcon } from 'lucide-react'
 
 export function PurchaseHeader() {
   const { isLoading } = useLoadingAnimation()
@@ -20,7 +21,10 @@ export function PurchaseHeader() {
     >
       <CardHeader className="flex flex-row">
         <div className="flex flex-col justify-center gap-1 w-full">
-          <CardTitle className="text-xl">Compras</CardTitle>
+          <CardTitle className="text-xl inline-flex gap-2 text-primary">
+            <ShoppingCartIcon />
+            Compras
+          </CardTitle>
           <CardDescription>Gerencie as compras dos produtos</CardDescription>
         </div>
         <NewPurchaseDialogForm />

@@ -40,7 +40,7 @@ const menuItems = [
     href: '/sales',
   },
   {
-    title: 'ver Vínculos',
+    title: 'Ver Vínculos',
     icon: LinkIcon,
     href: '/links',
   },

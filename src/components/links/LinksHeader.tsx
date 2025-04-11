@@ -1,6 +1,7 @@
 import { useLoadingAnimation } from '@/hooks/useLoadingAnimation'
 import { Card, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { cn } from '@/lib/utils'
+import { LinkIcon } from 'lucide-react'
 
 export function LinksHeader() {
   const { isLoading } = useLoadingAnimation()
@@ -14,7 +15,10 @@ export function LinksHeader() {
     >
       <CardHeader className="flex flex-row">
         <div className="flex flex-col justify-center gap-1 w-full">
-          <CardTitle className="text-xl">Vínculos</CardTitle>
+          <CardTitle className="text-xl inline-flex gap-2 text-primary">
+            <LinkIcon />
+            Vínculos
+          </CardTitle>
           <CardDescription>
             Veja o relacionamentos entre as compras e vendas
           </CardDescription>
